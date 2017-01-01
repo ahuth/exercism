@@ -5,11 +5,15 @@ defmodule SumOfMultiples do
   @spec to(non_neg_integer, [non_neg_integer]) :: non_neg_integer
   def to(limit, factors) do
     1..(limit - 1)
-    |> Enum.filter(fn(number) ->
+    |> filter_factors(factors)
+    |> Enum.sum
+  end
+
+  defp filter_factors(range, factors) do
+    Enum.filter(range, fn(number) ->
       Enum.any?(factors, fn(factor) ->
         rem(number, factor) == 0
       end)
     end)
-    |> Enum.sum
   end
 end

@@ -38,7 +38,7 @@ defmodule SumOfMultiplesTest do
     assert SumOfMultiples.to(1000, [3, 5]) == 233168
   end
 
-  @tag :pending
+  # @tag :pending
   test "configurable 7, 13, 17 to 20" do
     multiples = [7, 13, 17]
     assert SumOfMultiples.to(20, multiples) == 51

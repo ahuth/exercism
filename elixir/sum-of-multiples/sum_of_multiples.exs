@@ -11,9 +11,7 @@ defmodule SumOfMultiples do
 
   defp filter_factors(range, factors) do
     Enum.filter(range, fn(number) ->
-      Enum.any?(factors, fn(factor) ->
-        rem(number, factor) == 0
-      end)
+      Enum.any?(factors, fn(factor) -> rem(number, factor) == 0 end)
     end)
   end
 end

@@ -3,7 +3,7 @@ pub fn reply(input: &str) -> &str {
         "Fine. Be that way!"
     } else if input.to_uppercase() == input {
         "Whoa, chill out!"
-    } else if input.chars().last() == Some('?') {
+    } else if input.ends_with('?') {
         "Sure."
     } else {
         "Whatever."

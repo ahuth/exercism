@@ -7,7 +7,7 @@ defmodule Triangle do
   @spec kind(number, number, number) :: { :ok, kind } | { :error, String.t }
   def kind(a, b, c) when a <= 0 or b <= 0 or c <= 0, do: {:error, "all side lengths must be positive"}
   def kind(a, b, c) when a + b <= c or a + c <= b or b + c <= a, do: {:error, "side lengths violate triangle inequality"}
-  def kind(a, a, a), do: {:ok, :equilateral}
+  def kind(a, b, c) when a == b and a == c, do: {:ok, :equilateral}
   def kind(a, b, c) when a == b or a == c or b == c, do: {:ok, :isosceles}
   def kind(_, _, _), do: {:ok, :scalene}
 end

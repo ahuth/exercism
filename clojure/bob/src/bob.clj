@@ -1,13 +1,13 @@
 (ns bob)
 (use 'clojure.string)
 
-(defn shouting?
+(defn- shouting?
   [phrase]
   (and
     (= phrase (upper-case phrase))
     (not= phrase (lower-case phrase))))
 
-(defn question?
+(defn- question?
   [phrase]
   (ends-with? phrase "?"))
 

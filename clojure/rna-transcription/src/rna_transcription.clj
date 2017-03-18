@@ -11,4 +11,7 @@
 
 (defn to-rna
   [strand]
-  (apply str (map transcribe strand)))
+  (->>
+    strand
+    (map transcribe)
+    (apply str)))

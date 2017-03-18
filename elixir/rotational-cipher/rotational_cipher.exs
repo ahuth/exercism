@@ -30,12 +30,9 @@ defmodule RotationalCipher do
     end
   end
 
-  defp encode(ascii, shift) when ascii < 91, do: encode_upper(ascii, shift)
-  defp encode(ascii, shift), do: encode_lower(ascii, shift)
+  defp encode(ascii, shift) when ascii < 91, do: encode_max(ascii, shift, 90)
+  defp encode(ascii, shift), do: encode_max(ascii, shift, 122)
 
-  defp encode_upper(ascii, shift) when ascii + shift > 90, do: ascii + shift - 26
-  defp encode_upper(ascii, shift), do: ascii + shift
-
-  defp encode_lower(ascii, shift) when ascii + shift > 122, do: ascii + shift - 26
-  defp encode_lower(ascii, shift), do: ascii + shift
+  defp encode_max(ascii, shift, limit) when ascii + shift > limit, do: ascii + shift - 26
+  defp encode_max(ascii, shift, _), do: ascii + shift
 end

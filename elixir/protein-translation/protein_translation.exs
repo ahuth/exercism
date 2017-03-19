@@ -5,18 +5,13 @@ defmodule ProteinTranslation do
   @spec of_rna(String.t()) :: { atom,  list(String.t()) }
   def of_rna(rna) do
     rna
-    |> get_proteins
+    |> to_codons
+    |> to_proteins
     |> present
   end
 
   defp present([]), do: {:error, "invalid RNA"}
   defp present(proteins), do: {:ok, proteins}
-
-  defp get_proteins(rna) do
-    rna
-    |> to_codons
-    |> to_proteins
-  end
 
   defp to_codons(rna) do
     rna
@@ -26,12 +21,11 @@ defmodule ProteinTranslation do
   end
 
   defp to_proteins(codons) do
-    codons
-    |> Enum.reduce_while([], fn (codon, acc) ->
+    Enum.reduce_while(codons, [], fn (codon, acc) ->
       case of_codon(codon) do
         {:ok, "STOP"} -> {:halt, acc}
         {:ok, protein} -> {:cont, acc ++ [protein]}
-        _ -> {:halt, acc}
+        {:error, _} -> {:halt, acc}
       end
     end)
   end

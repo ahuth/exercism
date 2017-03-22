@@ -10,15 +10,16 @@
   [first second]
   (map vector first second))
 
-(defn- increment-if-different
-  [num [a b]]
-    (if (= a b)
-      num
-      (inc num)))
+(defn- same?
+  [[a b]]
+  (= a b))
 
 (defn- difference
   [first second]
-  (reduce increment-if-different 0 (zip first second)))
+  (->>
+    (zip first second)
+    (remove same?)
+    (count)))
 
 (defn distance
   [first second]

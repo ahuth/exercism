@@ -12,18 +12,16 @@
       (>= num to) (- num (* to into))
       :else num)))
 
-(defn- transfer-around [num to]
-  (cond
-    (< num 0) (dec (quot num to))
-    (>= num to) (quot num to)
-    :else 0))
-
 (defn clock [hour min]
-  (let [adjusted-hour (+ hour (transfer-around min 60))]
-    [(wrap-around adjusted-hour 24) (wrap-around min 60)]))
+  (->
+    hour
+    (* 60)
+    (+ min)
+    (wrap-around 1440)))
 
-(defn clock->string [[hour min]]
-  (str (zero-pad hour) ":" (zero-pad min)))
+(defn clock->string [min]
+  (let [hours (quot min 60) remaining-min (rem min 60)]
+    (str (zero-pad hours) ":" (zero-pad remaining-min))))
 
 (defn add-time [[hour min] added]
-  (clock hour (+ min added)))
+  (+ added (clock hour min)))

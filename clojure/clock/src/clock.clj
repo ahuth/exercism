@@ -22,5 +22,5 @@
   (let [hours (quot min 60) remaining-min (rem min 60)]
     (str (zero-pad hours) ":" (zero-pad remaining-min))))
 
-(defn add-time [[hour min] added]
-  (+ added (clock hour min)))
+(defn add-time [min added]
+  (clock 0 (+ min added)))

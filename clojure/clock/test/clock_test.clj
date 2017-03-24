@@ -60,7 +60,7 @@
       (is (= test-clock "20:20"))))
   (testing "negative hour and minutes both roll over continuously"
     (let [test-clock (clock->string (clock -121 -5810))]
-      (is (= test-clock "22:10"))))
+      (is (= test-clock "22:10")))))
 
 (deftest add-time-test
 
@@ -174,4 +174,4 @@
     (let [clock1 (clock 18 7)
           clock2 (clock -54 -11513)]
       (is (= clock1 clock2))))
-))
+)

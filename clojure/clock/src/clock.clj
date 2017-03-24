@@ -6,11 +6,10 @@
     (str num)))
 
 (defn- wrap-around [num to]
-  (let [into (Math/abs (quot num to))]
-    (cond
-      (< num 0) (+ num to (* to into))
-      (>= num to) (- num (* to into))
-      :else num)))
+  (cond
+    (< num 0) (+ to (rem num to))
+    (>= num to) (rem num to)
+    :else num))
 
 (defn clock [hour min]
   (->

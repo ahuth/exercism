@@ -40,16 +40,8 @@ defmodule Frequency do
   end
 
   defp parallel_map(collection, func) do
-    me = self()
-    pids = Enum.map(collection, fn item ->
-      spawn_link(fn ->
-        send me, {self(), func.(item)}
-      end)
-    end)
-    Enum.map(pids, fn pid ->
-      receive do
-        {^pid, result} -> result
-      end
-    end)
+    collection
+    |> Enum.map(&Task.async(fn -> func.(&1) end))
+    |> Enum.map(&Task.await(&1))
   end
 end

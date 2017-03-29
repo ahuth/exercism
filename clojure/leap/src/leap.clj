@@ -1,8 +1,11 @@
 (ns leap)
 
+(defn- eveny-divisible? [num into]
+  (= 0 (rem into num)))
+
 (defn leap-year? [year]
-  (or
-    (and
-      (= 0 (rem year 4))
-      (not= 0 (rem year 100)))
-    (= 0 (rem year 400))))
+  (condp eveny-divisible? year
+    400 true
+    100 false
+      4 true
+        false))

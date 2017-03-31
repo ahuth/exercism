@@ -4,10 +4,6 @@
 (defn transform [m]
   (reduce-kv
     (fn [acc k v]
-      (reduce
-        (fn [acc item]
-          (assoc acc (str/lower-case item) k))
-        acc
-        v))
+      (reduce #(assoc %1 (str/lower-case %2) k) acc v))
     {}
     m))

@@ -2,6 +2,7 @@
 .stack-work
 target
 checkouts
+.byebug_history
 .lein-deps-sum
 .lein-repl-history
 .lein-plugins/

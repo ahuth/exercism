@@ -1,6 +1,6 @@
 object RunLengthEncoding {
-  val ConsecutiveCharacterPattern = "(?<=(.))(?!\\1)"
-  val NumberCharacterRegex = "(\\d*)(.)".r
+  private[this] val ConsecutiveCharacterPattern = "(?<=(.))(?!\\1)"
+  private[this] val NumberCharacterRegex = "(\\d*)(.)".r
 
   def encode(str: String): String = {
     str.split(ConsecutiveCharacterPattern).map(c => {

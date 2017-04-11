@@ -7,11 +7,7 @@ object Strain {
     }
   }
 
-  def discard[T](list: Seq[T], func: T => Boolean): Seq[T] = list match {
-    case Nil => Nil
-    case head :: tail => func(head) match {
-      case true => discard(tail, func)
-      case false => head +: discard(tail, func)
-    }
+  def discard[T](list: Seq[T], func: T => Boolean): Seq[T] = {
+    keep[T](list, x => !func(x))
   }
 }

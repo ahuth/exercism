@@ -1,19 +1,28 @@
 defmodule Hexadecimal do
-  @values %{"0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9, "a" => 10, "b" => 11, "c" => 12, "d" => 13, "e" => 14, "f" => 15}
+  @numeric_digits ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
   @spec to_decimal(binary) :: integer
   def to_decimal(hex) do
     hex
     |> String.downcase
     |> String.codepoints
-    |> Enum.map(&(@values[&1]))
+    |> Enum.map(&lookup/1)
     |> Enum.reverse
     |> convert(0, 0)
   end
 
-  def convert([], _, acc), do: acc
-  def convert([nil|_], _, _), do: 0
-  def convert([head|tail], power, acc) do
+  defp lookup(n) when n in @numeric_digits, do: String.to_integer(n)
+  defp lookup("a"), do: 10
+  defp lookup("b"), do: 11
+  defp lookup("c"), do: 12
+  defp lookup("d"), do: 13
+  defp lookup("e"), do: 14
+  defp lookup("f"), do: 15
+  defp lookup(_), do: nil
+
+  defp convert([], _, acc), do: acc
+  defp convert([nil|_], _, _), do: 0
+  defp convert([head|tail], power, acc) do
     sum = acc + head * round(:math.pow(16, power))
     convert(tail, power + 1, sum)
   end

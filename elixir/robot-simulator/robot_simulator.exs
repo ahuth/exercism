@@ -1,10 +1,23 @@
 defmodule RobotSimulator do
   defstruct x: 0, y: 0, direction: :north
 
+  defmacro invalid_direction(dir) do
+    quote do: not unquote(dir) in [:north, :south, :east, :west]
+  end
+
+  defmacro invalid_position(pos) do
+    quote do
+      not (is_tuple(unquote(pos))
+        and tuple_size(unquote(pos)) == 2
+        and is_integer(elem(unquote(pos), 0))
+        and is_integer(elem(unquote(pos), 1)))
+    end
+  end
+
   @spec create(direction :: atom, position :: { integer, integer }) :: any
   def create(), do: %RobotSimulator{}
-  def create(dir, _) when not dir in [:north, :south, :east, :west], do: {:error, "invalid direction"}
-  def create(_, pos) when not (is_tuple(pos) and tuple_size(pos) == 2 and is_integer(elem(pos, 0)) and is_integer(elem(pos, 1))), do: {:error, "invalid position"}
+  def create(dir, _) when invalid_direction(dir), do: {:error, "invalid direction"}
+  def create(_, pos) when invalid_position(pos), do: {:error, "invalid position"}
   def create(dir, {x, y}) do
     %RobotSimulator{x: x, y: y, direction: dir}
   end

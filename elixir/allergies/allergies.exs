@@ -17,7 +17,7 @@ defmodule Allergies do
   @spec list(non_neg_integer) :: [String.t]
   def list(flags) do
     @bits
-    |> Enum.filter(fn {_, bit} -> band(flags, bit) == bit end)
+    |> Enum.filter(fn {_, bit} -> bit_set?(flags, bit) end)
     |> Enum.map(fn {key, _} -> key end)
   end
 
@@ -26,6 +26,8 @@ defmodule Allergies do
   """
   @spec allergic_to?(non_neg_integer, String.t) :: boolean
   def allergic_to?(flags, item) do
-    band(flags, @bits[item]) == @bits[item]
+    bit_set?(flags, @bits[item])
   end
+
+  defp bit_set?(bits, bit), do: band(bits, bit) == bit
 end

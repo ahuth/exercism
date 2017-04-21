@@ -37,8 +37,8 @@ defmodule Zipper do
   Get the complete tree from a zipper.
   """
   @spec to_tree(Z.t) :: BT.t
-  def to_tree(%Zipper{root: complete_tree}) do
-    complete_tree
+  def to_tree(%Zipper{root: root}) do
+    root
   end
 
   @doc """
@@ -71,15 +71,14 @@ defmodule Zipper do
   Get the parent of the focus node, if any.
   """
   @spec up(Z.t) :: Z.t
-  def up(%Zipper{focus: a, root: a}), do: nil
+  def up(%Zipper{trail: []}), do: nil
   def up(z) do
-    %Zipper{z | focus: walk_down(z.root, Enum.reverse(z.trail))}
+    %Zipper{z | focus: walk_down(z.root, Enum.reverse(z.trail)), trail: tl(z.trail)}
   end
 
-  defp walk_down(_, []), do: nil
-  defp walk_down(focus, [_]), do: focus
-  defp walk_down(focus, [:left | trail]), do: walk_down(focus.left, trail)
-  defp walk_down(focus, [:right | trail]), do: walk_down(focus.right, trail)
+  defp walk_down(bt, [_]), do: bt
+  defp walk_down(bt, [:left | trail]), do: walk_down(bt.left, trail)
+  defp walk_down(bt, [:right | trail]), do: walk_down(bt.right, trail)
 
   @doc """
   Set the value of the focus node.

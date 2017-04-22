@@ -73,7 +73,7 @@ defmodule Zipper do
   @spec up(Z.t) :: Z.t
   def up(%Zipper{trail: []}), do: nil
   def up(z) do
-    %Zipper{z | focus: walk_down(z.root, Enum.reverse(z.trail)), trail: tl(z.trail)}
+    %Zipper{focus: walk_down(z.root, Enum.reverse(z.trail)), trail: tl(z.trail), root: z.root}
   end
 
   defp walk_down(bt, [_]), do: bt
@@ -85,13 +85,25 @@ defmodule Zipper do
   """
   @spec set_value(Z.t, any) :: Z.t
   def set_value(z, v) do
+    new_focus = %BinTree{z.focus | value: v}
+    new_root = rebuild(z.root, Enum.reverse(z.trail), new_focus)
+    %Zipper{focus: new_focus, root: new_root, trail: z.trail}
   end
+
+  defp rebuild(tree, [], new_subtree), do: new_subtree
+  defp rebuild(tree, [:left], new_subtree), do: %BinTree{tree | left: new_subtree}
+  defp rebuild(tree, [:right], new_subtree), do: %BinTree{tree | right: new_subtree}
+  defp rebuild(tree, [:left | trail], new_subtree), do: rebuild(tree.left, trail, new_subtree)
+  defp rebuild(tree, [:right | trail], new_subtree), do: rebuild(tree.right, trail, new_subtree)
 
   @doc """
   Replace the left child tree of the focus node.
   """
   @spec set_left(Z.t, BT.t) :: Z.t
   def set_left(z, l) do
+    new_focus = %BinTree{z.focus | left: l}
+    new_root = rebuild(z.root, Enum.reverse(z.trail), new_focus)
+    %Zipper{focus: new_focus, root: new_root, trail: z.trail}
   end
 
   @doc """
@@ -99,5 +111,8 @@ defmodule Zipper do
   """
   @spec set_right(Z.t, BT.t) :: Z.t
   def set_right(z, r) do
+    new_focus = %BinTree{z.focus | right: r}
+    new_root = rebuild(z.root, Enum.reverse(z.trail), new_focus)
+    %Zipper{focus: new_focus, root: new_root, trail: z.trail}
   end
 end

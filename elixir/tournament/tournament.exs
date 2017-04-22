@@ -3,8 +3,8 @@ defmodule Tournament do
     defstruct matches: 0, won: 0, drawn: 0, lost: 0, points: 0
 
     def add_win(t), do: %Team{t | matches: t.matches + 1, won: t.won + 1, points: t.points + 3}
-    def add_draw(t), do: %Team{t | matches: t.matches + 1, drawn: t.won + 1, points: t.points + 1}
-    def add_loss(t), do: %Team{t | matches: t.matches + 1, lost: t.won + 1}
+    def add_draw(t), do: %Team{t | matches: t.matches + 1, drawn: t.drawn + 1, points: t.points + 1}
+    def add_loss(t), do: %Team{t | matches: t.matches + 1, lost: t.lost + 1}
 
     def pretty_print(t, name) do
       "#{String.pad_trailing(name, 31)}|  #{t.matches} |  #{t.won} |  #{t.drawn} |  #{t.lost} |  #{t.points}"

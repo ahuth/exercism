@@ -25,12 +25,11 @@ defmodule Tournament do
     input
     |> Enum.map(fn row -> String.split(row, ";") end)
     |> Enum.filter(&valid_row?/1)
-    |> Enum.map(fn [a, b, type] -> {type, a, b} end)
   end
 
   defp aggregate(rows) do
     rows
-    |> Enum.reduce(%{}, fn {type, a, b}, acc ->
+    |> Enum.reduce(%{}, fn [a, b, type], acc ->
       first = Map.get(acc, a, %Team{name: a})
       second = Map.get(acc, b, %Team{name: b})
       case type do

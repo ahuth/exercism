@@ -24,6 +24,7 @@ defmodule Tournament do
   defp split(input) do
     input
     |> Enum.map(fn row -> String.split(row, ";") end)
+    |> Enum.filter(&valid_row?/1)
     |> Enum.map(fn [a, b, type] -> {type, a, b} end)
   end
 
@@ -54,5 +55,14 @@ defmodule Tournament do
     header = "Team                           | MP |  W |  D |  L |  P"
     [header | Enum.map(teams, fn {name, team} -> Team.pretty_print(team, name) end)]
     |> Enum.join("\n")
+  end
+
+  defp valid_row?(row) do
+    case row do
+      [_, _, "win"] -> true
+      [_, _, "draw"] -> true
+      [_, _, "loss"] -> true
+      _ -> false
+    end
   end
 end

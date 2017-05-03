@@ -1,12 +1,12 @@
 case class SpaceAge(seconds: Long) {
   private val earthSeconds = BigDecimal(seconds.toFloat / 31557600)
-  private val roundingMode = BigDecimal.RoundingMode.HALF_UP
-  val onEarth = earthSeconds.setScale(2, roundingMode)
-  val onMercury = (earthSeconds / 0.2408467).setScale(2, roundingMode)
-  val onVenus = (earthSeconds / 0.61519726).setScale(2, roundingMode)
-  val onMars = (earthSeconds / 1.8808158).setScale(2, roundingMode)
-  val onJupiter = (earthSeconds / 11.862615).setScale(2, roundingMode)
-  val onSaturn = (earthSeconds / 29.447498).setScale(2, roundingMode)
-  val onUranus = (earthSeconds / 84.016846).setScale(2, roundingMode)
-  val onNeptune = (earthSeconds / 164.79132).setScale(2, roundingMode)
+  private def round(number: BigDecimal): BigDecimal = number.setScale(2, BigDecimal.RoundingMode.HALF_UP)
+  val onEarth = round(earthSeconds)
+  val onMercury = round(earthSeconds / 0.2408467)
+  val onVenus = round(earthSeconds / 0.61519726)
+  val onMars = round(earthSeconds / 1.8808158)
+  val onJupiter = round(earthSeconds / 11.862615)
+  val onSaturn = round(earthSeconds / 29.447498)
+  val onUranus = round(earthSeconds / 84.016846)
+  val onNeptune = round(earthSeconds / 164.79132)
 }

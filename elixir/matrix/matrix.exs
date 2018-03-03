@@ -62,10 +62,16 @@ defmodule Matrix do
   end
 
   @spec transpose(matrix :: matrix) :: matrix
-  def transpose([[] | _]), do: []
   def transpose(matrix) do
-    firsts = Enum.map(matrix, &hd/1)
-    rest = Enum.map(matrix, &tl/1)
-    [firsts | transpose(rest)]
+    matrix
+    |> swap([])
+    |> Enum.reverse
+  end
+
+  defp swap([[] | _], cols), do: cols
+  defp swap(rows, cols) do
+    firsts = Enum.map(rows, &hd/1)
+    rest = Enum.map(rows, &tl/1)
+    swap(rest, [firsts | cols])
   end
 end

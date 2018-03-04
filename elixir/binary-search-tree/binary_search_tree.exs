@@ -20,11 +20,23 @@ defmodule BinarySearchTree do
     end
   end
 
-  defp insert_left(%{data: val, left: nil, right: right}, data), do: new(val, new(data), right)
-  defp insert_left(node, data), do: new(node.data, insert(node.left, data), node.right)
+  defp insert_left(node, data) do
+    case node do
+      %{data: val, left: nil, right: right} ->
+        new(val, new(data), right)
+      _ ->
+        new(node.data, insert(node.left, data), node.right)
+    end
+  end
 
-  defp insert_right(%{data: val, left: left, right: nil}, data), do: new(val, left, new(data))
-  defp insert_right(node, data), do: new(node.data, node.left, insert(node.right, data))
+  defp insert_right(node, data) do
+    case node do
+      %{data: val, left: left, right: nil} ->
+        new(val, left, new(data))
+      _ ->
+        new(node.data, node.left, insert(node.right, data))
+    end
+  end
 
   @doc """
   Traverses the Binary Search Tree in order and returns a list of each node's data.

@@ -13,29 +13,12 @@ defmodule BinarySearchTree do
   Creates and inserts a node with its value as 'data' into the tree.
   """
   @spec insert(bst_node, any) :: bst_node
-  def insert(node, data) do
-    cond do
-      data > node.data -> insert_right(node, data)
-      true -> insert_left(node, data)
-    end
+  def insert(nil, data), do: new(data)
+  def insert(%{data: val} = tree, data) when data > val do
+    Map.update!(tree, :right, &insert(&1, data))
   end
-
-  defp insert_left(node, data) do
-    case node do
-      %{data: val, left: nil, right: right} ->
-        new(val, new(data), right)
-      _ ->
-        new(node.data, insert(node.left, data), node.right)
-    end
-  end
-
-  defp insert_right(node, data) do
-    case node do
-      %{data: val, left: left, right: nil} ->
-        new(val, left, new(data))
-      _ ->
-        new(node.data, node.left, insert(node.right, data))
-    end
+  def insert(tree, data) do
+    Map.update!(tree, :left, &insert(&1, data))
   end
 
   @doc """

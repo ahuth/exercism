@@ -7,3 +7,5 @@ checkouts
 .lein-repl-history
 .lein-plugins/
 .lein-failures
+_build/
+.merlin

@@ -5,6 +5,7 @@ let count strand nucleotide =
 
 let nucleotide_counts strand =
   ['A'; 'C'; 'G'; 'T']
-  |> List.filter ~f:(fun c -> String.contains strand c)
-  |> List.map ~f:(fun nucleotide -> (nucleotide, count strand nucleotide))
+  |> List.filter_map ~f:(fun c -> match count strand c with
+      | 0 -> None
+      | n -> Some (c, n))
   |> Char.Map.of_alist_exn

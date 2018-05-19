@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4cee22d151d819ddf5c318951071a095d676289a9595628407479ffb79ebca74
+-- hash: 3dce44926099a4aef212c87d88e9d8fb5284765568448c2d301b4b8164145079
 
 name:           bob
 version:        1.0.0.3
@@ -14,6 +14,7 @@ library
       src
   build-depends:
       base
+    , flow
     , text
   exposed-modules:
       Bob
@@ -31,6 +32,7 @@ test-suite test
   build-depends:
       base
     , bob
+    , flow
     , hspec
     , text
   default-language: Haskell2010

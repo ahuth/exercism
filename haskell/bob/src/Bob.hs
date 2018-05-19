@@ -2,6 +2,7 @@ module Bob (responseFor) where
 
 import Data.Char (isAlpha, isLower, isSpace)
 import qualified Data.Text as T
+import Flow
 
 responseFor :: String -> String
 responseFor xs
@@ -20,4 +21,4 @@ isQuestion :: String -> Bool
 isQuestion xs = last (trim xs) == '?'
 
 trim :: String -> String
-trim xs = T.unpack (T.strip (T.pack xs))
+trim xs = xs |> T.pack |> T.strip |> T.unpack

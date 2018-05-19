@@ -1,6 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.17.1.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
+--
+-- hash: 4cee22d151d819ddf5c318951071a095d676289a9595628407479ffb79ebca74
 
 name:           bob
 version:        1.0.0.3
@@ -12,6 +14,7 @@ library
       src
   build-depends:
       base
+    , text
   exposed-modules:
       Bob
   other-modules:
@@ -21,10 +24,13 @@ library
 test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
+  other-modules:
+      Paths_bob
   hs-source-dirs:
       test
   build-depends:
       base
     , bob
     , hspec
+    , text
   default-language: Haskell2010

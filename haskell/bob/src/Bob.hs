@@ -1,6 +1,7 @@
 module Bob (responseFor) where
 
 import Data.Char (isAlpha, isLower, isSpace)
+import qualified Data.Text as T
 
 responseFor :: String -> String
 responseFor xs
@@ -19,4 +20,4 @@ isQuestion :: String -> Bool
 isQuestion xs = last (trim xs) == '?'
 
 trim :: String -> String
-trim xs = filter isAlpha xs
+trim xs = T.unpack (T.strip (T.pack xs))

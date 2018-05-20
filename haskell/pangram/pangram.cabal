@@ -1,0 +1,35 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e17aa217011834eb0b6a7188f710e61e79710059603f470c7dcafcc5c2c66050
+
+name:           pangram
+version:        1.4.0.6
+build-type:     Simple
+cabal-version:  >= 1.10
+
+library
+  exposed-modules:
+      Pangram
+  other-modules:
+      Paths_pangram
+  hs-source-dirs:
+      src
+  build-depends:
+      Unique
+    , base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_pangram
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , hspec
+    , pangram
+  default-language: Haskell2010

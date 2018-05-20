@@ -8,8 +8,6 @@ defmodule Pangram do
     |> String.codepoints
     |> Enum.filter(&(&1 in @letters))
     |> Enum.uniq
-    |> Enum.sort
-    |> Enum.join
-    |> String.length == 26
+    |> length == 26
   end
 end

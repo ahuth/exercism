@@ -9,3 +9,4 @@ checkouts
 .lein-failures
 _build/
 .merlin
+.DS_Store

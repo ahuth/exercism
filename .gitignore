@@ -10,3 +10,4 @@ checkouts
 _build/
 .merlin
 .DS_Store
+elm-stuff/

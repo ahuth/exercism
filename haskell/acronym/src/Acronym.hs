@@ -1,6 +1,6 @@
 module Acronym (abbreviate) where
 
-import Data.Char (isLetter, isSpace, isUpper, toUpper)
+import Data.Char (isLetter, isUpper, toUpper)
 import Data.Maybe (mapMaybe)
 
 abbreviate :: String -> String

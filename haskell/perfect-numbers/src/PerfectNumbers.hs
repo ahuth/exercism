@@ -1,7 +1,5 @@
 module PerfectNumbers (classify, Classification(..)) where
 
-import Debug.Trace
-
 data Classification = Deficient | Perfect | Abundant deriving (Eq, Show)
 
 classify :: Int -> Maybe Classification

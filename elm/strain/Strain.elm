@@ -10,7 +10,7 @@ keep predicate list =
 
 discard : (a -> Bool) -> List a -> List a
 discard predicate list =
-    calculate (\x -> not (predicate x)) list []
+    calculate (predicate >> not) list []
 
 
 calculate : (a -> Bool) -> List a -> List a -> List a

@@ -2,16 +2,13 @@ module RNATranscription exposing (toRNA)
 
 toRNA : String -> Result Char String
 toRNA dna =
-  dna
-  |> String.toList
-  |> List.map convert
-  -- Incomplete
+  Ok (String.map convert dna)
 
-convert : Char -> Result Char Char
+convert : Char -> Char
 convert nucleotide =
   case nucleotide of
-    'G' -> Ok 'C'
-    'C' -> Ok 'G'
-    'T' -> Ok 'A'
-    'A' -> Ok 'U'
-    _ -> Err nucleotide
+    'G' -> 'C'
+    'C' -> 'G'
+    'T' -> 'A'
+    'A' -> 'U'
+    _ -> '?'

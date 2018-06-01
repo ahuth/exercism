@@ -7,8 +7,8 @@ getNumber : String -> Maybe String
 getNumber phoneNumber =
   clean phoneNumber
     |> andThen validateLength
-    |> andThen validateAreaCode
-    |> andThen validateExchangeCode
+    |> andThen (validateIndex 0)
+    |> andThen (validateIndex 3)
 
 clean : String -> Maybe String
 clean string =
@@ -31,19 +31,9 @@ validateLength string =
     _ ->
       Nothing
 
-validateAreaCode : String -> Maybe String
-validateAreaCode string =
-  case String.slice 0 1 string of
-    "0" ->
-      Nothing
-    "1" ->
-      Nothing
-    _ ->
-      Just string
-
-validateExchangeCode : String -> Maybe String
-validateExchangeCode string =
-  case String.slice 3 4 string of
+validateIndex : Int -> String -> Maybe String
+validateIndex index string =
+  case String.slice index (index + 1) string of
     "0" ->
       Nothing
     "1" ->

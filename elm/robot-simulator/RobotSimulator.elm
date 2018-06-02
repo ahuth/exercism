@@ -72,15 +72,12 @@ simulate directions robot =
 
 execute : Char -> Robot -> Robot
 execute char robot =
-    let
-      command = case char of
-        'R' ->
-          turnRight
-        'L' ->
-          turnLeft
-        'A' ->
-          advance
-        _ ->
-          identity
-    in
-      command robot
+    case char of
+      'R' ->
+        turnRight robot
+      'L' ->
+        turnLeft robot
+      'A' ->
+        advance robot
+      _ ->
+        robot

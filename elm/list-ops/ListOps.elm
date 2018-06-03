@@ -18,8 +18,8 @@ length list =
         case collection of
           [] ->
             size
-          (x :: xs) ->
-            calculate (size + 1) xs
+          (_ :: tail) ->
+            calculate (size + 1) tail
     in
       calculate 0 list
 

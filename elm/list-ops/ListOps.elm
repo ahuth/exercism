@@ -35,15 +35,11 @@ reverse list =
 
 foldl : (a -> b -> b) -> b -> List a -> b
 foldl f acc list =
-    let
-      calculate result collection =
-        case collection of
-          [] ->
-            result
-          head :: tail ->
-            calculate (f head result) tail
-    in
-      calculate acc list
+    case list of
+      [] ->
+        acc
+      head :: tail ->
+        foldl f (f head acc) tail
 
 foldr : (a -> b -> b) -> b -> List a -> b
 foldr f acc list =

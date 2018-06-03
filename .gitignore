@@ -1,6 +1,7 @@
 .gems
 .stack-work
 target
+scala/**/project
 checkouts
 .byebug_history
 .lein-deps-sum

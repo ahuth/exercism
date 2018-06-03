@@ -10,7 +10,6 @@ module ListOps
         , reverse
         )
 
-
 length : List a -> Int
 length list =
     let
@@ -18,7 +17,7 @@ length list =
         case collection of
           [] ->
             size
-          (_ :: tail) ->
+          _ :: tail ->
             calculate (size + 1) tail
     in
       calculate 0 list
@@ -29,7 +28,7 @@ reverse list =
       case second of
         [] ->
           first
-        (head :: tail) ->
+        head :: tail ->
           calculate (head :: first) tail
     in
       calculate [] list
@@ -41,7 +40,7 @@ foldl f acc list =
         case collection of
           [] ->
             result
-          (head :: tail) ->
+          head :: tail ->
             calculate (f head result) tail
     in
       calculate acc list
@@ -57,7 +56,7 @@ map f list =
         case second of
           [] ->
             reverse first
-          (head :: tail) ->
+          head :: tail ->
             calculate ((f head) :: first) tail
     in
       calculate [] list
@@ -69,7 +68,7 @@ filter f list =
         case second of
           [] ->
             reverse first
-          (head :: tail) ->
+          head :: tail ->
             if f head then
               calculate (head :: first) tail
             else
@@ -84,7 +83,7 @@ append xs ys =
         case second of
           [] ->
             reverse first
-          (head :: tail) ->
+          head :: tail ->
             calculate (head :: first) tail
     in
       calculate (reverse xs) ys

@@ -1,14 +1,27 @@
+# Ruby
 .gems
+.byebug_history
+
+# Haskell
 .stack-work
+
+# Scala
 target
 scala/**/project
+
+# Clojure
 checkouts
-.byebug_history
 .lein-deps-sum
 .lein-repl-history
 .lein-plugins/
 .lein-failures
+
+# Ocaml
 _build/
 .merlin
-.DS_Store
+
+# Elm
 elm-stuff/
+
+# OS
+.DS_Store

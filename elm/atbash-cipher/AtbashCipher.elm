@@ -4,7 +4,8 @@ import Char exposing (isDigit, isLower)
 import String exposing (dropLeft, filter, left, length, join, map, toLower)
 
 encode : String -> String
-encode plain = plain
+encode plain =
+    plain
     |> toLower
     |> filter isAlphaNumeric
     |> map convert
@@ -12,7 +13,8 @@ encode plain = plain
     |> join " "
 
 decode : String -> String
-decode cipher = cipher
+decode cipher =
+    cipher
     |> filter isAlphaNumeric
     |> map convert
 

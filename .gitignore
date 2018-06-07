@@ -23,5 +23,10 @@ _build/
 # Elm
 elm-stuff/
 
+# Python
+__pycache__
+.pytest_cache
+*.pyc
+
 # OS
 .DS_Store

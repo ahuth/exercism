@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b49cb90d35090072eefd2cde3ec2abfa3f98aa626cedc94bc56a4cbe9c70c83e
+-- hash: 01430ed9a47b0b9d1e9242058a537da409f614cf003d57e06fe8982396f69805
 
 name:           diamond
 version:        1.1.0.3
@@ -17,8 +17,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-      array
-    , base
+      base
     , ilist
   default-language: Haskell2010
 

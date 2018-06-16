@@ -9,7 +9,6 @@ library:
   source-dirs: src
   dependencies:
     - ilist
-    - array
 
 tests:
   test:

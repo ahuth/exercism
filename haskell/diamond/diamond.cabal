@@ -1,0 +1,36 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b49cb90d35090072eefd2cde3ec2abfa3f98aa626cedc94bc56a4cbe9c70c83e
+
+name:           diamond
+version:        1.1.0.3
+build-type:     Simple
+cabal-version:  >= 1.10
+
+library
+  exposed-modules:
+      Diamond
+  other-modules:
+      Paths_diamond
+  hs-source-dirs:
+      src
+  build-depends:
+      array
+    , base
+    , ilist
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_diamond
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , diamond
+    , hspec
+  default-language: Haskell2010

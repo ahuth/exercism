@@ -1,14 +1,3 @@
-# Ruby
-.gems
-.byebug_history
-
-# Haskell
-.stack-work
-
-# Scala
-target
-scala/**/project
-
 # Clojure
 checkouts
 .lein-deps-sum
@@ -16,20 +5,31 @@ checkouts
 .lein-plugins/
 .lein-failures
 
+# Elm
+elm-stuff/
+
+# Haskell
+.stack-work
+
+# Node
+node_modules
+
 # Ocaml
 _build/
 .merlin
-
-# Elm
-elm-stuff/
 
 # Python
 __pycache__
 .pytest_cache
 *.pyc
 
-# Node
-node_modules
+# Ruby
+.gems
+.byebug_history
+
+# Scala
+target
+scala/**/project
 
 # OS
 .DS_Store

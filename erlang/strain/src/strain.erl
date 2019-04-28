@@ -4,15 +4,10 @@
 
 keep(_, []) -> [];
 keep(Fn, [Head | Tail]) ->
-  io:write(Fn),
   case Fn(Head) of
     true -> [Head | keep(Fn, Tail)];
     false -> keep(Fn, Tail)
   end.
 
-discard(_, []) -> [];
-discard(Fn, [Head | Tail]) ->
-  case Fn(Head) of
-    true -> discard(Fn, Tail);
-    false -> [Head | discard(Fn, Tail)]
-  end.
+discard(Fn, List) ->
+  keep(fun(X) -> not Fn(X) end, List).

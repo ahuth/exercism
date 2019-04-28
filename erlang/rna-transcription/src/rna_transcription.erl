@@ -2,7 +2,7 @@
 
 -export([to_rna/1]).
 
-to_rna(Strand) -> lists:map(fun convert/1, Strand).
+to_rna(Strand) -> [convert(N) || N <- Strand].
 
 convert($G) -> $C;
 convert($C) -> $G;

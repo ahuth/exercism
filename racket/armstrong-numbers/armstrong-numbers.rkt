@@ -9,11 +9,11 @@
     (string->list)
     (map string)
     (map string->number)
-    (map (raise-to-the (count-digits n)))
+    (map (create-raise-to-the (count-digits n)))
     (apply +)
     (= n)))
 
-(define (raise-to-the n)
+(define (create-raise-to-the n)
   (lambda (x)
     (expt x n)))
 

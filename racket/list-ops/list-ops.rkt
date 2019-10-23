@@ -34,6 +34,9 @@
   (if (null? a) b
       (cons (car a) (append (cdr a) b))))
 
-(define (my-concatenate list)
-  (if (null? list) null
-      (my-append (car list) (my-concatenate (cdr list)))))
+(define (my-concatenate x)
+  (cond
+    [(null? x) null]
+    [(not (pair? x)) (list x)]
+    [else (my-append (my-concatenate (car x))
+                     (my-concatenate (cdr x)))]))

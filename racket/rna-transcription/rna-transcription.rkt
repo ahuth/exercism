@@ -1,7 +1,6 @@
 #lang racket
 
 (require threading)
-(require racket/match)
 (provide to-rna)
 
 (define (to-rna strand)
@@ -11,8 +10,8 @@
     list->string))
 
 (define (convert nucleotide)
-  (match nucleotide
-    [#\G #\C]
-    [#\C #\G]
-    [#\T #\A]
-    [#\A #\U]))
+  (case nucleotide
+    [(#\G )#\C]
+    [(#\C) #\G]
+    [(#\T) #\A]
+    [(#\A) #\U]))

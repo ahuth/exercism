@@ -5,8 +5,7 @@ is_isogram(Phrase) ->
   is_isogram(string:lowercase(Phrase), sets:new()).
 
 is_isogram([], _) -> true;
-is_isogram([$-|T], Chars) -> is_isogram(T, Chars);
-is_isogram([$ |T], Chars) -> is_isogram(T, Chars);
+is_isogram([H|T], Chars) when H < $a orelse H > $z -> is_isogram(T, Chars);
 is_isogram([H|T], Chars) ->
   case sets:is_element(H, Chars) of
     true -> false;
